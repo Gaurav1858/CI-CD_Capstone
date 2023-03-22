@@ -1,11 +1,11 @@
 pipeline {
     agent any
     stages {
-        stage("Development") {
+        stage('Development') {
             when {
                 branch 'Development'
             }
-            steps  {
+            steps {
                 echo "In Development environment"
                 sh '''
                   javac EmployeeInfo.java
@@ -13,10 +13,7 @@ pipeline {
                 echo "Build Successfully!"
             }
         }
-        stage("Testing") {
-            //when {
-                //branch 'testing'
-            }
+        stage('Testing') {
             steps {
                 echo "In testing environment"
                 sh '''
@@ -25,8 +22,7 @@ pipeline {
                   '''
             }
         }
-
-        stage("Production") {
+        stage('Production') {
             when {
                 branch 'Production'
             }
