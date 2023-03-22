@@ -35,11 +35,8 @@ pipeline {
            failure {
                emailext attachLog:true, body: 'Pipeline is failed!', subject: 'Post Build Action Email', to: 'gaurav.shukla@knoldus.com'
         }
-      }
-      
-    post {
-           success {
+        success {
                emailext attachLog:true, body: 'Build Successfull!!', subject: 'Post Build Action Email', to: 'gaurav.shukla@knoldus.com'
         }
-      }
+    }
 }
