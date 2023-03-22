@@ -1,11 +1,11 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage("Development"){
+    stages {
+        stage('Development') {
             when {
                 branch 'Development'
             }
-            steps{
+            steps {
                 echo "In Development environment"
                 sh '''
                   javac EmployeeInfo.java
@@ -13,11 +13,8 @@ pipeline{
                 echo "Build Successfully!"
             }
         }
-        stage("Testing"){
-            //when {
-                //branch 'testing'
-            }
-            steps{
+        stage('Testing') {
+            steps {
                 echo "In testing environment"
                 sh '''
                   javac EmployeeInfo.java
@@ -25,12 +22,11 @@ pipeline{
                   '''
             }
         }
-
-        stage("Production"){
+        stage('Production') {
             when {
                 branch 'Production'
             }
-            steps{
+            steps {
                 echo "Deploying to Production environment"
             }
         }
@@ -39,8 +35,8 @@ pipeline{
            failure {
                emailext attachLog:true, body: 'Pipeline is failed!', subject: 'Post Build Action Email', to: 'gaurav.shukla@knoldus.com'
         }
-         success {
+        success {
                emailext attachLog:true, body: 'Build Successfull!!', subject: 'Post Build Action Email', to: 'gaurav.shukla@knoldus.com'
         }
-      }
+    }
 }
