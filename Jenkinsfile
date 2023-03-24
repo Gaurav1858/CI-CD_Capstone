@@ -14,6 +14,9 @@ pipeline {
             }
         }
         stage('Testing') {
+            when {
+                branch 'Development'
+            }
             steps {
                 echo "In testing environment"
                 sh '''
